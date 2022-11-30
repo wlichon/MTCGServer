@@ -1,0 +1,30 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The table [dbo].[MTCGCard] is being dropped and re-created since all non-computed columns within the table have been
+         redefined.
+       The table [dbo].[MTCGUser] is being dropped and re-created since all non-computed columns within the table have been
+         redefined.
+
+** User actions
+     Drop
+       [dbo].[FK_Card_ToUser] (Foreign Key)
+       [dbo].[MTCGCard] (Table)
+       [dbo].[MTCGUser] (Table)
+     Create
+       [dbo].[MTCGCard] (Table)
+       [dbo].[MTCGUser] (Table)
+       [dbo].[FK_Card_ToUser] (Foreign Key)
+
+** Supporting actions
+     Refresh
+       [dbo].[CardOwners] (View)
+
+The table [dbo].[MTCGCard] is being dropped and re-created since all non-computed columns within the table have been redefined.
+The table [dbo].[MTCGUser] is being dropped and re-created since all non-computed columns within the table have been redefined.
+

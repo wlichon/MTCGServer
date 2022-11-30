@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[MTCGUser]
+(
+    [Username] NVARCHAR(50) NOT NULL PRIMARY KEY,
+    [Password] NVARCHAR(50) NOT NULL, 
+    [Coins] INT NOT NULL DEFAULT 20
+)

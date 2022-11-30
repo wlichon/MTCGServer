@@ -1,0 +1,20 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The column [dbo].[MTCGCard].[Element] is being dropped, data loss could occur.
+
+** User actions
+     Alter
+       [dbo].[MTCGCard] (Table)
+
+** Supporting actions
+     Refresh
+       [dbo].[CardOwners] (View)
+
+The column [dbo].[MTCGCard].[Element] is being dropped, data loss could occur.
+

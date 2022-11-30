@@ -1,0 +1,21 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Alter
+       [dbo].[MTCGCard] (Table)
+
+** Supporting actions
+     Drop
+       [dbo].[FK_Card_ToUser] (Foreign Key)
+     Create
+       [dbo].[FK_Card_ToUser] (Foreign Key)
+     Refresh
+       [dbo].[CardOwners] (View)
