@@ -17,6 +17,9 @@ namespace MTCGServer.Backend.Database
 {
     public class Database
     {
+
+        private List<string> sessionTokens;
+        private string connectionString;
         public enum SQLFunction
         {
             LoginUser,
@@ -26,14 +29,14 @@ namespace MTCGServer.Backend.Database
             ShowCardCollection
         }
 
-        private string connectionString;
 
         public Database(string connectionString)
         {
             this.connectionString = connectionString;
+            this.sessionTokens = new List<string>();
         }
 
-        private static void LoginUser(object obj, SqlCommand cmd, HttpRes res)
+        private void LoginUser(object obj, SqlCommand cmd, HttpRes res)
         {
             User UserObj = (User)obj;
             cmd.Parameters.Add("@Username", SqlDbType.NVarChar).Value = UserObj.Username;
@@ -54,6 +57,7 @@ namespace MTCGServer.Backend.Database
 
                     res.Code = Code.OK;
                     res.Status = "OK\nUser logged in\n";
+                    this.sessionTokens.Add(UserObj.Username);
 
                 }
                 else
@@ -75,7 +79,7 @@ namespace MTCGServer.Backend.Database
             }
         }
 
-        private static void RegisterUser(object obj, SqlCommand cmd, HttpRes res)
+        private void RegisterUser(object obj, SqlCommand cmd, HttpRes res)
         {
             User UserObj = (User)obj;
             cmd.Parameters.Add("@Username", SqlDbType.NVarChar).Value = UserObj.Username;
@@ -109,7 +113,7 @@ namespace MTCGServer.Backend.Database
             }
         }
 
-        private static void CreatePackage(object ObjCards, SqlCommand cmd, HttpRes res)
+        private void CreatePackage(object ObjCards, SqlCommand cmd, HttpRes res)
         {
             int cardNumber = 1;
             bool err = false;
@@ -150,14 +154,19 @@ namespace MTCGServer.Backend.Database
             }
         }
 
-        private static void AcquirePackage(object obj, SqlCommand sp, HttpRes res)
+        private void AcquirePackage(object obj, SqlCommand sp, HttpRes res)
         {
             AuthToken TokenObj = (AuthToken)obj;
             sp.CommandType = CommandType.StoredProcedure;
+            
 
             sp.Parameters.Add(new SqlParameter("@Username", TokenObj.Token));
             try
             {
+                if (!sessionTokens.Contains(TokenObj.Token))
+                {
+                    throw new Exception("User session not active");
+                }
 
                 sp.ExecuteNonQuery();
 
@@ -182,9 +191,15 @@ namespace MTCGServer.Backend.Database
                         break;
                 }
             }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                res.Status = ex.Message;
+                res.Code = Code.BAD_REQUEST;
+            }
         }
 
-        private static void ShowCardCollection(object obj, SqlCommand cmd, HttpRes res)
+        private void ShowCardCollection(object obj, SqlCommand cmd, HttpRes res)
         {
             AuthToken AuthObj = (AuthToken)obj;
             cmd.Parameters.Add("@Username", SqlDbType.NVarChar).Value = AuthObj.Token;
@@ -201,12 +216,17 @@ namespace MTCGServer.Backend.Database
        
             try
             {
+                if (!sessionTokens.Contains(AuthObj.Token))
+                {
+                    throw new Exception("User session not active");
+                }
+
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     foreach (DataRow row in ds.Tables[0].Rows)
                     {
                         Console.WriteLine(row["Name"] + ", " + row["Damage"]);
-                        var Card = new Card { Name = row["Name"].ToString(), Damage = Convert.ToDouble(row["Damage"].ToString()), Element = row["Element"].ToString() };
+                        var Card = new Card {Id = row["CardID"].ToString(), Name = row["Name"].ToString(), Damage = Convert.ToDouble(row["Damage"].ToString()), Element = row["Element"].ToString() };
                         cards.Add(Card);
                             /*
                             public class Card
@@ -241,6 +261,13 @@ namespace MTCGServer.Backend.Database
                         break;
                 }
 
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                res.Status = ex.Message;
+                res.Code = Code.BAD_REQUEST;
             }
         }
 

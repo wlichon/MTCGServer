@@ -19,6 +19,12 @@ namespace MTCGServer.Backend.BusinessLogic
 
             HttpRes? res;
 
+            if (!req.Headers.ContainsKey("Path"))
+            {
+                res = null;
+                return res;
+            }
+
             switch (req.Headers["Path"])
             {
                 case "/users":

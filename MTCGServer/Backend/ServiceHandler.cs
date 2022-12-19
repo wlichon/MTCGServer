@@ -16,6 +16,7 @@ namespace MTCGServer.Backend
 
     public class ServiceHandler : IServiceHandler
     {
+        private Logic logic = new Logic();
         public HttpRes Request(HttpReq req)
         {
             //string? path = req.Headers.ContainsKey("Path") ? req.Headers["Path"] : null;
@@ -37,7 +38,7 @@ namespace MTCGServer.Backend
                     break;
             }
 
-            var logic = new Logic();
+            
 
             HttpRes? res = logic.HandleRequest(req);
 

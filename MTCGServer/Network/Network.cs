@@ -224,12 +224,12 @@ namespace MTCGServer.Network
             byte[] msg;
             if (data != null)
             {
-
+                data = HttpStatus.ToString() + '\n' + data;
                 msg = System.Text.Encoding.ASCII.GetBytes(data);
             }
             else
             {
-                msg = System.Text.Encoding.ASCII.GetBytes("Bad request");
+                msg = System.Text.Encoding.ASCII.GetBytes(HttpStatus.ToString());
             }
             stream.Write(msg, 0, msg.Length);
         }
@@ -238,6 +238,7 @@ namespace MTCGServer.Network
         public void StartServer()
         {
             TcpListener server = null;
+            var handler = new ServiceHandler();
             try
             {
 
@@ -299,7 +300,7 @@ namespace MTCGServer.Network
                         Console.WriteLine("Received: {0}", data);
 
 
-                        var handler = new ServiceHandler();
+                       
 
                         HttpRes res = handler.Request(req);
 
