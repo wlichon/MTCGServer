@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3ZDRN/OaI9obUW7NTOfKjRgIruaKh1GTCfo6xvCFbSIIjU/B/NfpT9Hw6JNr9vomGMvyfbSOGBkBmOaDVovAkQ==",
+  "dgSpecHash": "lWtTQPts+F9+MSdcyGriK/EMBN/n5qJSMWfd9+qzoFs6yDr+/2cvYKMaSkzxawdsGtz4LtDxG+h2TeyF8ZNTyA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\wikto\\OneDrive\\Desktop\\FH\\VS\\SWE1\\MTCGServer\\MTCGServer\\MTCGServer.csproj",
+  "projectFilePath": "C:\\Users\\wikto\\OneDrive\\Desktop\\Lokal\\Swen\\MTCG\\MTCGServer\\MTCGServer\\MTCGServer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\wikto\\.nuget\\packages\\castle.core\\5.1.0\\castle.core.5.1.0.nupkg.sha512",
     "C:\\Users\\wikto\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",

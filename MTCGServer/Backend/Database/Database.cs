@@ -158,7 +158,6 @@ namespace MTCGServer.Backend.Database
         {
             AuthToken TokenObj = (AuthToken)obj;
             sp.CommandType = CommandType.StoredProcedure;
-            
 
             sp.Parameters.Add(new SqlParameter("@Username", TokenObj.Token));
             try

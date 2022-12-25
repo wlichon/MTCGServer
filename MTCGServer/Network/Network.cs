@@ -219,7 +219,7 @@ namespace MTCGServer.Network
             return jsonString;
         }
 
-        public void Response(Code HttpStatus, string? data, NetworkStream stream)
+        public byte[] Response(Code HttpStatus, string? data)
         {
             byte[] msg;
             if (data != null)
@@ -231,7 +231,9 @@ namespace MTCGServer.Network
             {
                 msg = System.Text.Encoding.ASCII.GetBytes(HttpStatus.ToString());
             }
-            stream.Write(msg, 0, msg.Length);
+
+            return msg;
+            
         }
 
 
@@ -304,14 +306,18 @@ namespace MTCGServer.Network
 
                         HttpRes res = handler.Request(req);
 
+                        byte[] msg = null;
+
                         if(res == null)
                         {
-                            Response(Code.NOT_FOUND, null, stream);
+                            msg = Response(Code.NOT_FOUND, null);
                         }
                         else
                         {
-                            Response(res.Code, res.Status, stream);
+                            msg = Response(res.Code, res.Status);
                         }
+
+                        stream.Write(msg, 0, msg.Length);
 
 
 
@@ -334,10 +340,10 @@ namespace MTCGServer.Network
                         // Process the data sent by the client.
                         //data = data.ToUpper();
 
-                       
+
 
                         // Send back a response.
-                 
+
                         //Console.WriteLine("Sent: {0}", msg);
                     }
 

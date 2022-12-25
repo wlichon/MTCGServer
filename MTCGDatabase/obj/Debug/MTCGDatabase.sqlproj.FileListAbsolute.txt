@@ -1,0 +1,10 @@
+C:\Users\wikto\OneDrive\Desktop\Lokal\Swen\MTCG\MTCGServer\MTCGDatabase\bin\Debug\MTCGDatabase.dacpac
+C:\Users\wikto\OneDrive\Desktop\Lokal\Swen\MTCG\MTCGServer\MTCGDatabase\bin\Debug\MTCGDatabase.dll
+C:\Users\wikto\OneDrive\Desktop\Lokal\Swen\MTCG\MTCGServer\MTCGDatabase\bin\Debug\MTCGDatabase.pdb
+C:\Users\wikto\OneDrive\Desktop\Lokal\Swen\MTCG\MTCGServer\MTCGDatabase\obj\Debug\MTCGDatabase.sqlproj.AssemblyReference.cache
+C:\Users\wikto\OneDrive\Desktop\Lokal\Swen\MTCG\MTCGServer\MTCGDatabase\obj\Debug\Model.xml
+C:\Users\wikto\OneDrive\Desktop\Lokal\Swen\MTCG\MTCGServer\MTCGDatabase\obj\Debug\refactor.xml
+C:\Users\wikto\OneDrive\Desktop\Lokal\Swen\MTCG\MTCGServer\MTCGDatabase\obj\Debug\postdeploy.sql
+C:\Users\wikto\OneDrive\Desktop\Lokal\Swen\MTCG\MTCGServer\MTCGDatabase\obj\Debug\predeploy.sql
+C:\Users\wikto\OneDrive\Desktop\Lokal\Swen\MTCG\MTCGServer\MTCGDatabase\obj\Debug\MTCGDatabase.dll
+C:\Users\wikto\OneDrive\Desktop\Lokal\Swen\MTCG\MTCGServer\MTCGDatabase\obj\Debug\MTCGDatabase.pdb
