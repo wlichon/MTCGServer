@@ -46,7 +46,7 @@ namespace MTCGServer.Backend.Database
         {
             var UserObj = JsonConvert.DeserializeObject<User>(req.Json);
 
-            string sql = "select top 1 * from dbo.MTCGUser where Username = @Username and Password = @Password";
+            string sql = "SELECT Password FROM dbo.MTCGUser where Username = @Username;";
 
         
 

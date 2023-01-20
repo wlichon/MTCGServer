@@ -1,0 +1,21 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Alter
+       [dbo].[MTCGUser] (Table)
+
+** Supporting actions
+     Refresh
+       [dbo].[accept_trade] (Procedure)
+       [dbo].[acquire_package] (Procedure)
+       [dbo].[add_cards_to_deck] (Procedure)
+       [dbo].[create_trade] (Procedure)
+       [dbo].[delete_db_records] (Procedure)

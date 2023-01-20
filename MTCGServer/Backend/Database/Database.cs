@@ -12,6 +12,10 @@ using MTCGServer.Backend.Models;
 using System.Data;
 using MTCGServer.Network;
 using System.Data.SqlClient;
+using System;
+using System.Security.Cryptography;
+using BCrypt;
+
 
 namespace MTCGServer.Backend.Database
 {
@@ -59,26 +63,29 @@ namespace MTCGServer.Backend.Database
         {
             User UserObj = (User)obj;
             cmd.Parameters.Add("@Username", SqlDbType.NVarChar).Value = UserObj.Username;
-            cmd.Parameters.Add("@Password", SqlDbType.NVarChar).Value = UserObj.Password;
+            //cmd.Parameters.Add("@Password", SqlDbType.NVarChar).Value = UserObj.Password;
 
-            DataSet ds = new DataSet();
+        
+
             cmd.ExecuteNonQuery();
+            DataSet ds = new DataSet();
             var dAdap = new SqlDataAdapter();
             dAdap.SelectCommand = cmd;
             dAdap.Fill(ds, "result");
             try
             {
-                if (ds.Tables[0].Rows.Count > 0)
+                
+                string? storedPassword = ds.Tables[0].Rows[0]["Password"].ToString();
+
+                if(VerifyPassword(UserObj.Password, storedPassword))
                 {
-                    //string? usernameInDB = ds.Tables[0].Rows[0]["Username"].ToString();
-                    //string? passwordInDB = ds.Tables[0].Rows[0]["Password"].ToString();
-
-
                     res.Code = Code.OK;
                     res.Status = "User logged in\n";
                     this.sessionTokens.Add(UserObj.Username);
 
                 }
+
+                
                 else
                 {
                     res.Code = Code.BAD_REQUEST;
@@ -91,18 +98,39 @@ namespace MTCGServer.Backend.Database
                 switch (ex.Errors[0].Number)
                 {
                     default:
-                        res.Status = "Something went wrong\n";
+                        res.Status = ex.Errors[0].Message;
                         break;
                 }
 
             }
         }
 
-        private void RegisterUser(object obj, SqlCommand cmd, HttpRes res)
+        static void GeneratePasswordAndSalt(out string hashedPassword, string password)
         {
+            string salt = BCrypt.Net.BCrypt.GenerateSalt(12);
+
+
+            hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);          
+        }
+        static bool VerifyPassword(string password, string storedPassword)
+        {
+
+            return BCrypt.Net.BCrypt.Verify(password, storedPassword);
+            
+        }
+ 
+
+
+    private void RegisterUser(object obj, SqlCommand cmd, HttpRes res)
+        {
+            string salt;
+            string hashedPassword;
             User UserObj = (User)obj;
+
+            GeneratePasswordAndSalt(out hashedPassword, UserObj.Password);
+
             cmd.Parameters.Add("@Username", SqlDbType.NVarChar).Value = UserObj.Username;
-            cmd.Parameters.Add("@Password", SqlDbType.NVarChar).Value = UserObj.Password;
+            cmd.Parameters.Add("@Password", SqlDbType.NVarChar).Value = hashedPassword;
             try
             {
 

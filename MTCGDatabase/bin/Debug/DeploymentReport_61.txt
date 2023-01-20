@@ -1,0 +1,39 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The column [dbo].[MTCGCard].[isSpell] on table [dbo].[MTCGCard] must be added, but the column has no default value and
+         does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue you must
+         either: add a default value to the column, mark it as allowing NULL values, or enable the generation of smart-defaults
+         as a deployment option.
+
+** User actions
+     Alter
+       [dbo].[MTCGCard] (Table)
+       [dbo].[MTCGUser] (Table)
+       [dbo].[acquire_package] (Procedure)
+     Create
+       [dbo].[MTCGDeals] (Table)
+       [dbo].[FK_Deal_ToCardID] (Foreign Key)
+       [dbo].[FK_FirstCard_ToCards] (Foreign Key)
+       [dbo].[FK_FourthCard_ToCards] (Foreign Key)
+       [dbo].[FK_SecondCard_ToCards] (Foreign Key)
+       [dbo].[FK_ThirdCard_ToCards] (Foreign Key)
+       [dbo].[accept_trade] (Procedure)
+       [dbo].[add_cards_to_deck] (Procedure)
+       [dbo].[create_trade] (Procedure)
+       [dbo].[delete_db_records] (Procedure)
+       [dbo].[delete_trade] (Procedure)
+
+** Supporting actions
+     Refresh
+       [dbo].[reset_card_owners] (Procedure)
+
+The column [dbo].[MTCGCard].[isSpell] on table [dbo].[MTCGCard] must be added, but the column has no default value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of smart-defaults as a deployment option.
+The column Element on table [dbo].[MTCGCard] must be changed from NULL to NOT NULL. If the table contains data, the ALTER script may not work. To avoid this issue, you must add values to this column for all rows or mark it as allowing NULL values, or enable the generation of smart-defaults as a deployment option.
+If this deployment is executed, changes to [dbo].[MTCGCard] might introduce run-time errors in [dbo].[CardOwners].
+

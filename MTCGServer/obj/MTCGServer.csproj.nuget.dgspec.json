@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\wikto\\OneDrive\\Desktop\\FH\\VS\\SWE1\\MTCGServer\\MTCGServer\\MTCGServer.csproj": {}
+    "C:\\Users\\wikto\\OneDrive\\Desktop\\Lokal\\MTCGServer\\MTCGServer\\MTCGServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\wikto\\OneDrive\\Desktop\\FH\\VS\\SWE1\\MTCGServer\\MTCGServer\\MTCGServer.csproj": {
+    "C:\\Users\\wikto\\OneDrive\\Desktop\\Lokal\\MTCGServer\\MTCGServer\\MTCGServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\wikto\\OneDrive\\Desktop\\FH\\VS\\SWE1\\MTCGServer\\MTCGServer\\MTCGServer.csproj",
+        "projectUniqueName": "C:\\Users\\wikto\\OneDrive\\Desktop\\Lokal\\MTCGServer\\MTCGServer\\MTCGServer.csproj",
         "projectName": "MTCGServer",
-        "projectPath": "C:\\Users\\wikto\\OneDrive\\Desktop\\FH\\VS\\SWE1\\MTCGServer\\MTCGServer\\MTCGServer.csproj",
+        "projectPath": "C:\\Users\\wikto\\OneDrive\\Desktop\\Lokal\\MTCGServer\\MTCGServer\\MTCGServer.csproj",
         "packagesPath": "C:\\Users\\wikto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wikto\\OneDrive\\Desktop\\FH\\VS\\SWE1\\MTCGServer\\MTCGServer\\obj\\",
+        "outputPath": "C:\\Users\\wikto\\OneDrive\\Desktop\\Lokal\\MTCGServer\\MTCGServer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\wikto\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
             "Moq": {
               "target": "Package",
               "version": "[4.18.2, )"
