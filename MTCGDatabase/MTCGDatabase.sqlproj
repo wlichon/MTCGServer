@@ -68,6 +68,12 @@
     <Build Include="dbo\Views\CardOwners.sql" />
     <Build Include="dbo\StoredProcedures\acquire_package.sql" />
     <Build Include="dbo\StoredProcedures\reset_card_owners.sql" />
+    <Build Include="dbo\StoredProcedures\add_cards_to_deck.sql" />
+    <Build Include="dbo\StoredProcedures\delete_db_records.sql" />
+    <Build Include="dbo\Tables\MTCGDeals.sql" />
+    <Build Include="dbo\StoredProcedures\create_trade.sql" />
+    <Build Include="dbo\StoredProcedures\accept_trade.sql" />
+    <Build Include="dbo\StoredProcedures\delete_trade.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="MTCGDatabase.refactorlog" />

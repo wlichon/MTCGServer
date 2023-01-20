@@ -1,0 +1,22 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The type for column isSpell in table [dbo].[MTCGDeals] is currently  NVARCHAR (50) NOT NULL but is being changed to  BIT
+         NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible with type  BIT
+         NOT NULL.
+
+** User actions
+     Rename
+       [dbo].[MTCGDeals].[isSpell] (Column)
+     Alter
+       [dbo].[MTCGDeals] (Table)
+
+** Supporting actions
+
+The type for column isSpell in table [dbo].[MTCGDeals] is currently  NVARCHAR (50) NOT NULL but is being changed to  BIT NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible with type  BIT NOT NULL.
+

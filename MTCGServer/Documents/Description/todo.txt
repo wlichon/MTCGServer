@@ -1,6 +1,0 @@
-﻿ login token verification //done (mutex sessionTokens array?)
- user can manage his cards (trade, select deck to play with)
- card is spell or monster
- deck consists of 4 cards
- battle with current deck
- client side

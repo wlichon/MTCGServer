@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\wikto\\OneDrive\\Desktop\\Lokal\\Swen\\MTCG\\MTCGServer\\MTCGServer.UnitTests\\MTCGServer.UnitTests.csproj": {}
+    "C:\\Users\\wikto\\OneDrive\\Desktop\\FH\\VS\\SWE1\\MTCGServer\\MTCGServer.UnitTests\\MTCGServer.UnitTests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\wikto\\OneDrive\\Desktop\\Lokal\\Swen\\MTCG\\MTCGServer\\MTCGServer.UnitTests\\MTCGServer.UnitTests.csproj": {
+    "C:\\Users\\wikto\\OneDrive\\Desktop\\FH\\VS\\SWE1\\MTCGServer\\MTCGServer.UnitTests\\MTCGServer.UnitTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\wikto\\OneDrive\\Desktop\\Lokal\\Swen\\MTCG\\MTCGServer\\MTCGServer.UnitTests\\MTCGServer.UnitTests.csproj",
+        "projectUniqueName": "C:\\Users\\wikto\\OneDrive\\Desktop\\FH\\VS\\SWE1\\MTCGServer\\MTCGServer.UnitTests\\MTCGServer.UnitTests.csproj",
         "projectName": "MTCGServer.UnitTests",
-        "projectPath": "C:\\Users\\wikto\\OneDrive\\Desktop\\Lokal\\Swen\\MTCG\\MTCGServer\\MTCGServer.UnitTests\\MTCGServer.UnitTests.csproj",
+        "projectPath": "C:\\Users\\wikto\\OneDrive\\Desktop\\FH\\VS\\SWE1\\MTCGServer\\MTCGServer.UnitTests\\MTCGServer.UnitTests.csproj",
         "packagesPath": "C:\\Users\\wikto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wikto\\OneDrive\\Desktop\\Lokal\\Swen\\MTCG\\MTCGServer\\MTCGServer.UnitTests\\obj\\",
+        "outputPath": "C:\\Users\\wikto\\OneDrive\\Desktop\\FH\\VS\\SWE1\\MTCGServer\\MTCGServer.UnitTests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\wikto\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\wikto\\OneDrive\\Desktop\\Lokal\\Swen\\MTCG\\MTCGServer\\MTCGServer\\MTCGServer.csproj": {
-                "projectPath": "C:\\Users\\wikto\\OneDrive\\Desktop\\Lokal\\Swen\\MTCG\\MTCGServer\\MTCGServer\\MTCGServer.csproj"
+              "C:\\Users\\wikto\\OneDrive\\Desktop\\FH\\VS\\SWE1\\MTCGServer\\MTCGServer\\MTCGServer.csproj": {
+                "projectPath": "C:\\Users\\wikto\\OneDrive\\Desktop\\FH\\VS\\SWE1\\MTCGServer\\MTCGServer\\MTCGServer.csproj"
               }
             }
           }
@@ -90,14 +90,14 @@
         }
       }
     },
-    "C:\\Users\\wikto\\OneDrive\\Desktop\\Lokal\\Swen\\MTCG\\MTCGServer\\MTCGServer\\MTCGServer.csproj": {
+    "C:\\Users\\wikto\\OneDrive\\Desktop\\FH\\VS\\SWE1\\MTCGServer\\MTCGServer\\MTCGServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\wikto\\OneDrive\\Desktop\\Lokal\\Swen\\MTCG\\MTCGServer\\MTCGServer\\MTCGServer.csproj",
+        "projectUniqueName": "C:\\Users\\wikto\\OneDrive\\Desktop\\FH\\VS\\SWE1\\MTCGServer\\MTCGServer\\MTCGServer.csproj",
         "projectName": "MTCGServer",
-        "projectPath": "C:\\Users\\wikto\\OneDrive\\Desktop\\Lokal\\Swen\\MTCG\\MTCGServer\\MTCGServer\\MTCGServer.csproj",
+        "projectPath": "C:\\Users\\wikto\\OneDrive\\Desktop\\FH\\VS\\SWE1\\MTCGServer\\MTCGServer\\MTCGServer.csproj",
         "packagesPath": "C:\\Users\\wikto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wikto\\OneDrive\\Desktop\\Lokal\\Swen\\MTCG\\MTCGServer\\MTCGServer\\obj\\",
+        "outputPath": "C:\\Users\\wikto\\OneDrive\\Desktop\\FH\\VS\\SWE1\\MTCGServer\\MTCGServer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\wikto\\AppData\\Roaming\\NuGet\\NuGet.Config",

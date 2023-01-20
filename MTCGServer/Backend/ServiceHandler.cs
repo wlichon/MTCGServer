@@ -20,23 +20,7 @@ namespace MTCGServer.Backend
         public HttpRes Request(HttpReq req)
         {
             //string? path = req.Headers.ContainsKey("Path") ? req.Headers["Path"] : null;
-            string? method;
            
-            switch (req.Method)
-            {
-                case HttpMethod.Get:
-                    method = "GET";
-                    break;
-                case HttpMethod.Put:
-                    method = "PUT";
-                    break;
-                case HttpMethod.Post:
-                    method = "POST";
-                    break;
-                default:
-                    method = null;
-                    break;
-            }
 
             
 

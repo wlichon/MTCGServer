@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TViuCba1Q0gh82AWMHELShfET6SFHDMwKoCa47+W+J549EGObN+FL62Bt81zWuUewUKpQ3n36Rrgsu5vc/mKzQ==",
+  "dgSpecHash": "dAWBnxc/+q+GOp8FXf1A7uXEWCJETfagPQTNmM7JDeo1zKV6UmFR3G3TxRN3l6r5ZYw5/7oyWcHgnkUyOkxWEQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\wikto\\OneDrive\\Desktop\\Lokal\\Swen\\MTCG\\MTCGServer\\MTCGServer.UnitTests\\MTCGServer.UnitTests.csproj",
+  "projectFilePath": "C:\\Users\\wikto\\OneDrive\\Desktop\\FH\\VS\\SWE1\\MTCGServer\\MTCGServer.UnitTests\\MTCGServer.UnitTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\wikto\\.nuget\\packages\\autofac\\6.0.0\\autofac.6.0.0.nupkg.sha512",
     "C:\\Users\\wikto\\.nuget\\packages\\autofac.extras.moq\\6.1.0\\autofac.extras.moq.6.1.0.nupkg.sha512",

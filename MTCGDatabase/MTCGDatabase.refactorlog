@@ -42,4 +42,53 @@
     <Property Name="ParentElementType" Value="SqlSchema" />
     <Property Name="NewName" Value="[MTCGUser]" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="27fdd335-dd1d-4c11-bffc-93c3b7027aab" ChangeDateTime="12/26/2022 00:35:20">
+    <Property Name="ElementName" Value="[dbo].[MTCGDeck].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[MTCGDeck]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Username" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="dceb28ec-990a-4aa2-b0aa-24f3fd3e2cd9" ChangeDateTime="12/26/2022 00:35:51">
+    <Property Name="ElementName" Value="[dbo].[MTCGDeck].[Username]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[MTCGDeck]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DeckID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8af49ca1-91ee-4087-b08f-d030e8efe127" ChangeDateTime="01/02/2023 07:50:26">
+    <Property Name="ElementName" Value="[dbo].[MTCGCard].[Index]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[MTCGCard]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CardNumber" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1461fedd-7edf-4447-9436-790652706bf7" ChangeDateTime="01/17/2023 00:23:20">
+    <Property Name="ElementName" Value="[dbo].[FK_MTCGDeals_ToMTCGCard]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[MTCGDeals]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Deal_ToCardID]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b9ec00c4-6c56-4da1-a199-2e1ba4685b6c" ChangeDateTime="01/17/2023 00:35:35">
+    <Property Name="ElementName" Value="[dbo].[MTCGDeals].[Type]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[MTCGDeals]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IsSpell" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="96ddf890-536b-406a-9142-9b928f0b9237" ChangeDateTime="01/17/2023 00:35:56">
+    <Property Name="ElementName" Value="[dbo].[MTCGDeals].[IsSpell]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[MTCGDeals]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="isSpell" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="78087384-3b42-4751-892e-64785eea61e7" ChangeDateTime="01/18/2023 13:41:20">
+    <Property Name="ElementName" Value="[dbo].[FK_MTCGUser_ToTable]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[MTCGUser]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_FirstCard_ToCards]" />
+  </Operation>
 </Operations>
