@@ -19,22 +19,18 @@ namespace MTCGServer.Backend.Database
     public class DataHandler
     {
         public Database db = new Database(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=MTCG_DB;Integrated Security=True");
-        //all functions, sql statements that access data
         
-
-
+    
         public HttpRes RegisterUser(HttpReq req)
         {
 
             var UserObj = JsonConvert.DeserializeObject<User>(req.Json);
-
-            // All the info required to reach your db. See connectionstrings.com
          
 
             // Prepare a proper parameterized query 
-            string sql = "insert into dbo.MTCGUser (Username, Password) values(@Username,@Password)"; //make sure there are no duplicates
+            string sql = "insert into dbo.MTCGUser (Username, Password) values(@Username,@Password)";
 
-            // Create the connection (and be sure to dispose it at the end)
+            
             var res = new HttpRes("", Code.DEFAULT, "");
 
             db.Query(UserObj, sql, res, Database.SQLFunction.RegisterUser);
@@ -58,7 +54,7 @@ namespace MTCGServer.Backend.Database
         }
 
         
-        public HttpRes CreatePackage(HttpReq req)//admin only
+        public HttpRes CreatePackage(HttpReq req)
         {
             var PackagesObj = JsonConvert.DeserializeObject<List<Card>>(req.Json);
             string sql = "insert into dbo.MTCGCard (CardID, Name, Damage, Element, isSpell) values(@CardID, @Name, @Damage, @Element, @isSpell)";

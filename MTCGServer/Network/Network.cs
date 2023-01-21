@@ -116,7 +116,7 @@ namespace MTCGServer.Network
 
             public HttpReq FillDictionary(List<string> headers)
             {
-                //HttpMethod? method = null;
+                
                 var dict = new Dictionary<string, string>();
                 foreach (string header in headers)
                 {
@@ -256,30 +256,22 @@ namespace MTCGServer.Network
                 byte[] bytes = new byte[1024];
                 string data = null;
 
-                Console.WriteLine("--------------------------1-----------------------------");
+               
                 data = null;
 
                 // Get a stream object for reading and writing
                 NetworkStream stream = this.clientSocket.GetStream();
 
                 int readBytes;
-                Console.WriteLine("--------------------------2-----------------------------");
-                // Loop to receive all the data sent by the client.
+               
+                
                 try
                 {
 
                     readBytes = stream.Read(bytes, 0, bytes.Length);
                     
 
-                    /*
-                    if(this.clientSocket.Available > 0)
-                    {
-                        Console.WriteLine("--------------------------2.5-----------------------------");
-                        break;
-                    } 
-                    */
-
-                    Console.WriteLine("--------------------------3-----------------------------");
+                    
                     // Translate data bytes to a ASCII string.
                     data = System.Text.Encoding.ASCII.GetString(bytes, 0, readBytes);
 
@@ -288,7 +280,7 @@ namespace MTCGServer.Network
 
                     string jsonString = StreamStringToJsonString(data);
 
-                    Console.WriteLine("--------------------------4-----------------------------");
+                  
                     req.Json = jsonString;
 
                     Console.WriteLine("Http Method is = {0}", req.Method);
@@ -298,7 +290,7 @@ namespace MTCGServer.Network
                         Console.WriteLine("header key = {0}, header value = {1}", header.Key, header.Value);
                     }
 
-                    Console.WriteLine("--------------------------5-----------------------------");
+                    
 
 
 
@@ -308,7 +300,7 @@ namespace MTCGServer.Network
 
 
                     HttpRes res = this.handler.Request(req);
-                    Console.WriteLine("--------------------------6-----------------------------");
+                   
                     byte[] msg = null;
 
                     if (res == null)
@@ -319,7 +311,7 @@ namespace MTCGServer.Network
                     {
                         msg = Response(res.Code, res.Status);
                     }
-                    Console.WriteLine("--------------------------7-----------------------------");
+               
                     stream.Write(msg, 0, msg.Length);
                     stream.Dispose();
 

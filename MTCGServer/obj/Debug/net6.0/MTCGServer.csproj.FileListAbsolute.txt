@@ -83,3 +83,4 @@ C:\Users\wikto\OneDrive\Desktop\Lokal\MTCGServer\MTCGServer\obj\Debug\net6.0\MTC
 C:\Users\wikto\OneDrive\Desktop\Lokal\MTCGServer\MTCGServer\obj\Debug\net6.0\MTCGServer.genruntimeconfig.cache
 C:\Users\wikto\OneDrive\Desktop\Lokal\MTCGServer\MTCGServer\obj\Debug\net6.0\ref\MTCGServer.dll
 C:\Users\wikto\OneDrive\Desktop\Lokal\MTCGServer\MTCGServer\bin\Debug\net6.0\BCrypt.Net-Next.dll
+C:\Users\wikto\OneDrive\Desktop\FH\VS\SWE1\MTCGServer\MTCGServer\bin\Debug\net6.0\BCrypt.Net-Next.dll

@@ -19,10 +19,7 @@ namespace MTCGServer.Backend
         private Logic logic = new Logic();
         public HttpRes Request(HttpReq req)
         {
-            //string? path = req.Headers.ContainsKey("Path") ? req.Headers["Path"] : null;
-           
-
-            
+          
 
             HttpRes? res = logic.HandleRequest(req);
 

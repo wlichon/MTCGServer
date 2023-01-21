@@ -28,16 +28,16 @@ namespace MTCGServer.Backend.BusinessLogic
             switch (req.Headers["Path"])
             {
                 case "/users":
-                    res = dh.RegisterUser(req); // done
+                    res = dh.RegisterUser(req); 
                     break;
                 case "/packages":
-                    res = dh.CreatePackage(req); // done
+                    res = dh.CreatePackage(req); 
                     break;
                 case "/sessions":
-                    res = dh.LoginUser(req); // done
+                    res = dh.LoginUser(req); 
                     break;
                 case "/transactions/packages":
-                    res = dh.AcquirePackage(req); // done, not sure about edge cases where there arent 5 cards free
+                    res = dh.AcquirePackage(req); 
                     break;
                 case "/cards":
                     res = dh.ShowCardCollection(req);

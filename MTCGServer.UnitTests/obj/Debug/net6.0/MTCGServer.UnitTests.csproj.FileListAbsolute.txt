@@ -238,3 +238,4 @@ C:\Users\wikto\OneDrive\Desktop\Lokal\MTCGServer\MTCGServer.UnitTests\obj\Debug\
 C:\Users\wikto\OneDrive\Desktop\Lokal\MTCGServer\MTCGServer.UnitTests\obj\Debug\net6.0\MTCGServer.UnitTests.pdb
 C:\Users\wikto\OneDrive\Desktop\Lokal\MTCGServer\MTCGServer.UnitTests\obj\Debug\net6.0\MTCGServer.UnitTests.genruntimeconfig.cache
 C:\Users\wikto\OneDrive\Desktop\Lokal\MTCGServer\MTCGServer.UnitTests\obj\Debug\net6.0\ref\MTCGServer.UnitTests.dll
+C:\Users\wikto\OneDrive\Desktop\FH\VS\SWE1\MTCGServer\MTCGServer.UnitTests\bin\Debug\net6.0\BCrypt.Net-Next.dll

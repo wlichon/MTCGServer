@@ -320,23 +320,7 @@ namespace MTCGServer.UnitTests
         [SetUp]
         public void TestInitialize()
         {
-            /*
-            var mockDeck1 = new Mock<List<Card>>();
-            var mockDeck2 = new Mock<List<Card>>();
-
-            mockDeck1.Setup(Deck1 => Deck1[0]).Returns(new Card { Id = "321", Name = "FireElf", Damage = 30, Element = "Fire" });
-            mockDeck1.Setup(Deck1 => Deck1[1]).Returns(new Card { Id = "123", Name = "WaterDragon", Damage = 150, Element = "Water" });
-            mockDeck1.Setup(Deck1 => Deck1[2]).Returns(new Card { Id = "124", Name = "FireDragon", Damage = 120, Element = "Fire" });
-            mockDeck1.Setup(Deck1 => Deck1[3]).Returns(new Card { Id = "125", Name = "RegularSpell", Damage = 110, Element = "Normal" });
-
-            mockDeck2.Setup(Deck1 => Deck1[0]).Returns(new Card { Id = "234", Name = "Ork", Damage = 60, Element = "Normal" });
-            mockDeck2.Setup(Deck1 => Deck1[1]).Returns(new Card { Id = "421", Name = "Wizzard", Damage = 80, Element = "Normal" });
-            mockDeck2.Setup(Deck1 => Deck1[2]).Returns(new Card { Id = "422", Name = "Knight", Damage = 70, Element = "Normal" });
-            mockDeck2.Setup(Deck1 => Deck1[3]).Returns(new Card { Id = "423", Name = "Kraken", Damage = 170, Element = "Water" });
-
-            mockDeck1.Setup(Deck1 => Deck1.Count).Returns(4);
-            mockDeck2.Setup(Deck2 => Deck2.Count).Returns(4);
-            */
+            
             Deck1 = new List<Card>()
             {
                 new Card { Id = "321", Name = "FireElf", Damage = 30, Element = "Fire" },

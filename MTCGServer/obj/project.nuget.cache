@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RmFnFehLsWhGOPUg/SOT9Bay8LOBzCtpOcNcpZbhnEHl1N63qzbLAovcRXst/iRr5wrCabELTT2t1AgIQpHnkw==",
+  "dgSpecHash": "w3PNYMwg5rUsAnHQANpzD07oETLAJvC4Z+qzAtZK2zlZYVuEd9MxSp4rLSJcai43YE0RVMBvo4gv89BIDTf+YQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\wikto\\OneDrive\\Desktop\\Lokal\\MTCGServer\\MTCGServer\\MTCGServer.csproj",
+  "projectFilePath": "C:\\Users\\wikto\\OneDrive\\Desktop\\FH\\VS\\SWE1\\MTCGServer\\MTCGServer\\MTCGServer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\wikto\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\wikto\\.nuget\\packages\\castle.core\\5.1.0\\castle.core.5.1.0.nupkg.sha512",

@@ -63,10 +63,7 @@ namespace MTCGServer.Backend.Database
         {
             User UserObj = (User)obj;
             cmd.Parameters.Add("@Username", SqlDbType.NVarChar).Value = UserObj.Username;
-            //cmd.Parameters.Add("@Password", SqlDbType.NVarChar).Value = UserObj.Password;
-
-        
-
+    
             cmd.ExecuteNonQuery();
             DataSet ds = new DataSet();
             var dAdap = new SqlDataAdapter();
@@ -104,7 +101,6 @@ namespace MTCGServer.Backend.Database
 
             }
         }
-
         static void GeneratePasswordAndSalt(out string hashedPassword, string password)
         {
             string salt = BCrypt.Net.BCrypt.GenerateSalt(12);
@@ -176,7 +172,7 @@ namespace MTCGServer.Backend.Database
                 cmd.Parameters["@Damage"].Value = card.Damage;
                 cmd.Parameters["@Element"].Value = card.Element;
                 cmd.Parameters["@isSpell"].Value = card.isSpell;
-                //string sql = "insert into dbo.MTCGCard (CardID, Name, Damage, Username) values(@CardID, @Name, @Damage, @Username)";
+               
                 try
                 { 
                     cmd.ExecuteNonQuery();
@@ -264,8 +260,6 @@ namespace MTCGServer.Backend.Database
 
             string cards = "Collection: \n";
 
-            //DataTable Cards = new DataTable("Cards");
-       
             try
             {
                 if (!sessionTokens.Contains(AuthObj.Token))
@@ -280,17 +274,9 @@ namespace MTCGServer.Backend.Database
                         Console.WriteLine(row["Name"] + ", " + row["Damage"]);
                         cards += $"Id = {row["CardID"].ToString()}, Name = {row["Name"].ToString()}, Damage = {Convert.ToDouble(row["Damage"].ToString())}, Element = {row["Element"].ToString()}, isSpell = {(bool)row["isSpell"]} \n";
                         
-                            /*
-                            public class Card
-                                {
-                                    public string Id { get; set; }
-                                    public string Name { get; set; }
-                                    public double Damage { get; set; }
-                                }
-                            */
+                            
                     }
-                    //string? usernameInDB = ds.Tables[0].Rows[0]["Username"].ToString();
-                    //string? passwordInDB = ds.Tables[0].Rows[0]["Password"].ToString();
+                    
 
                    
                     res.Code = Code.OK;
@@ -489,7 +475,7 @@ namespace MTCGServer.Backend.Database
                 cmd.CommandText = sql2;
                 cmd.Parameters.Add("@Username2",SqlDbType.NVarChar).Value = currentPlayer;
                 object result = cmd.ExecuteScalar();
-                //using (SqlCommand cmd2 = new SqlCommand(sql2, this.connectionString)) ;
+              
 
                 
                 if(result == null)
@@ -853,7 +839,6 @@ namespace MTCGServer.Backend.Database
                 {
                     case 50000:
                         res.Status = ex.Errors[0].Message;
-                        //res.Status = "Trade Deal ID already exists or provided card is not in users possesion\n";
                         res.Code = Code.FORBIDDEN;
                         break;
                     default:
@@ -1078,10 +1063,7 @@ namespace MTCGServer.Backend.Database
         public Code Query(object obj, string sql, HttpRes res, SQLFunction func)
         {
 
-            // All the info required to reach your db. See connectionstrings.com
-
-            // Prepare a proper parameterized query 
-  
+            
 
             // Create the connection (and be sure to dispose it at the end)
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -1184,8 +1166,7 @@ namespace MTCGServer.Backend.Database
                 }
                 catch (Exception ex)
                 {
-                    // We should log the error somewhere, 
-                    // for this example let's just show a message
+                   
                     Console.WriteLine("ERROR:" + ex.Message);
                     return Code.BAD_REQUEST;
                 }
