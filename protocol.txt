@@ -1,0 +1,63 @@
+Technical Steps:
+Designs:
+
+Mein Server-Design setzt sich aus einigen wichtigen Namespaces zusammen:
+1. Network
+Der TCP Listener, dieser startet den server indem die Funktion StartServer
+aufgerufen wird. Die IP Adresse ist 127.0.0.1 und Port ist 10001.
+
+HttpReq: der die Anfrage des TCP Clients speichert, also die header, method und den
+request body als json.
+
+HttpRes: der die Daten die an den Client zurückgeschickt werden sollen speichert,
+also body, statuscode und status
+
+2. Database
+Database Klasse: der Datenbankverbindungsstring und alle aktiven Sessiontokens
+werden in den membern dieses Objekts gespeichert. Zusätzlich werden hier alle
+Funktionen definiert die auf die Datenbank zugreifen und Datensätze einfügen bzw.
+löschen. Bei erfolgreichen Anfragen wird der Status des response Objekts geändert
+und der Statuscode aktualisiert.
+
+Datahandler Klasse: diese ist verantwortlich für das Deserialisieren der Json Strings
+die in der Anfrage geschickt wurden. Ausserdem wird für jede verschiedene Funktion
+ein sql String definiert, welcher an das Database Objekt weitergegeben wird.
+
+3. Models
+Hier werden alle notwendigen Objekte definiert die zum Deserialisieren der Json
+Strings nötig sind. Weiters sind hier Helpermethoden festgelegt die vor allem die
+Battlelogik implementieren
+
+Der Servicehandler ist für das mappen der Requests an den richtigen Endpunkt im Server
+verantwortlich.
+
+Fehler:
+Grobe Fehler habe ich im Laufe des Projekts nicht gehabt, die meisten Probleme sind beim
+implementieren der Serverlogik aufgetreten, ich hatte einige Probleme mit dem verbinden zum TCP
+Server, beim ausführen der Curl Scripts musste ich nämlich den –http0.9 tag setzen, andernfalls wird
+der response nicht angezeigt.
+
+Lessons Learned:
+Mir gefällt mein Routing innerhalb der Applikation überhaupt nicht, ich habe viele Klassen definiert
+die eigentlich unnötig sind und in ein einziges Objekt zusammengeführt werden könnten.
+Klassen wie z.B. der Datahandler waren meiner Meinung nach überflüssig, ich hatte diese auslassen
+können und direkt von der Businesslogic Klasse auf die Datenbank Klasse weiterleiten können.
+
+Würde ich das Projekt ein zweites mal schreiben, würde ich vor allem bei der Einrichtung einer Lobby mehr
+auf async Methoden zugreifen, als eine Schleife die auf den Thread mit dem wartenden Spieler einen Sleep aufruft.
+
+Tests:
+
+Eine Solution für die Implementierung der Unit tests habe ich angelegt, hier wird die Battlelogik
+getestet, darunter wird überprüft ob die Karten die gewinnen sollten auch gewinnen, ob die Karten
+nach einem Sieg in das Deck des Siegers transferiert werden und ob die Battle History richtig in den
+logs gespeichert wird. Ich habe die Battlelogik besonders getestet, da dies die Hauptfunktionalität der
+Applikation ist, und ich sicherstellen wollte dass sie einwandfrei funktioniert. Deshalb habe ich den
+Großteil meiner Unit Tests für diesen Codeteil geschrieben.
+Natürlich verwende ich auch die vorgegebenen Curl Scripts als Integration Tests, allerdings habe ich
+die Test Scripts ein wenig anpassen müssen, da die Json Strings nicht meinen Datenbank Modellen
+entsprachen.
+
+Zeitaufwand: ca 40 Stunden
+
+Git: https://github.com/zerleger/MTCGServer

@@ -89,7 +89,8 @@ namespace MTCGServer.Backend.Models
             DragonVsElf,
             WizzardVsOrk,
             KnightVsWaterSpell,
-            KrakenVsSpell
+            KrakenVsSpell,
+            GolemVsMonster
         }
 
         public static List<String> logComments = new List<String>()
@@ -112,6 +113,7 @@ namespace MTCGServer.Backend.Models
             {"kraken", new List<Value>{new Value("spell",1,logComment.KrakenVsSpell) } },
             {"spell", new List<Value>{new Value("kraken",2,logComment.KrakenVsSpell) } },
             {"fireelf", new List<Value>{new Value("dragon",1,logComment.DragonVsElf) } }
+            
 
         };
         public string Id { get; set; }
@@ -135,7 +137,7 @@ namespace MTCGServer.Backend.Models
         public int SpecialtyDecider(Card opponent, ref String logComment)
         {
             
-            String patterns = @"[Gg]oblin|[Dd]ragon|[Kk]night|[Ww]ater[Ss]pell|[Ss]pell|[Ww]izzard|[Oo]rk|[Kk]raken|[Ff]ire[Ee]lf";
+            String patterns = @"[Gg]oblin|[Dd]ragon|[Kk]night|[Ww]ater[Ss]pell|[Ss]pell|[Ww]izzard|[Oo]rk|[Kk]raken|[Ff]ire[Ee]lf|[Bb]lacksmith";
 
 
             Match match1 = Regex.Match(Name, patterns);
@@ -144,11 +146,36 @@ namespace MTCGServer.Backend.Models
             String name1 = match1.Value.ToLower();
             String name2 = match2.Value.ToLower();
 
+            bool firstCardIsBlacksmith = false;
+            bool secondCardIsBlacksmith = false;
 
-            
+            if (name1 == "blacksmith")
+            {
+                firstCardIsBlacksmith = true;
+            }
+
+            if (name2 == "blacksmith")
+            {
+                secondCardIsBlacksmith = true;
+            }
 
 
-            if(specialties.ContainsKey(name1) && specialties[name1].Any(p => p.name == name2))
+            if (firstCardIsBlacksmith && secondCardIsBlacksmith)
+            {
+                return 5;
+            }
+            if (firstCardIsBlacksmith)
+            {
+                return 3;
+            }
+            if (secondCardIsBlacksmith)
+            {
+                return 4;
+            }
+
+
+
+            if (specialties.ContainsKey(name1) && specialties[name1].Any(p => p.name == name2))
             {
                 int index = specialties[name1].FindIndex(p => p.name == name2);
                 logComment = logComments[(int)specialties[name1][index].comment];
@@ -243,9 +270,12 @@ namespace MTCGServer.Backend.Models
         public String player1 { get; set; }
         public String player2 { get; set; }
 
+        public Random rnd { get; set; }
+
         public int player1Rating { get; set; }
 
         public int player2Rating { get; set; }
+
         
         
         public int DecideWinner(Card card1, Card card2) // -2 unknown error, -1 if invalid card members, 0 if draw, 1 if card1 is stronger, 2 if card2 is stronger
@@ -272,13 +302,73 @@ namespace MTCGServer.Backend.Models
 
 
 
+            
             if ((outcome = card1.SpecialtyDecider(card2, ref logComment)) != 0)
             {
                 
+
+                if(outcome >= 3)
+                {
+                    double scaledCard1Damage = 0;
+                    double scaledCard2Damage = 0;
+
+                    if (outcome == 3) //if 3 is returned -> first is blacksmith, if 4 is returned -> second is blacksmith, if 5 -> both are blacksmith
+                    {
+                        if (card2.isSpell)
+                        {
+                            scaledCard1Damage = card1.Damage * rnd.Next(5);
+                            scaledCard2Damage = card2.Damage * card2.ElementDamageScaler(card1);
+                        }
+                        else
+                        {
+                            scaledCard1Damage = card1.Damage * rnd.Next(5);
+                            scaledCard2Damage = card2.Damage;
+                        }
+                    
+                    } 
+
+                    if(outcome == 4)
+                    {
+                        if (card1.isSpell)
+                        {
+                            scaledCard1Damage = card1.Damage * card1.ElementDamageScaler(card2);
+                            scaledCard2Damage = card2.Damage * rnd.Next(5);
+                        }
+                        else
+                        {
+                            scaledCard1Damage = card1.Damage;
+                            scaledCard2Damage = card2.Damage * rnd.Next(5);
+                        }
+                    }
+
+                    if(outcome == 5)
+                    {
+
+                        scaledCard1Damage = card1.Damage * rnd.Next(5);
+                        scaledCard2Damage = card2.Damage * rnd.Next(5);
+                    
+                    
+                    }
+
+                    if (scaledCard1Damage > scaledCard2Damage)
+                    {
+                        outcome = 1;
+                    }
+                    else if (scaledCard1Damage < scaledCard2Damage)
+                    {
+                        outcome = 2;
+                    }
+                    else
+                    {
+                        outcome = 0;
+                    }
+
+                    logComment = $"{card1Damage} VS {card2Damage} -> {scaledCard1Damage} VS {scaledCard2Damage} => {outcomes[outcome]}";
+                }
             }
 
 
-            else if (card1.isSpell || card2.isSpell) // XOR, only true if one or two of the cards are a spell
+            else if (card1.isSpell || card2.isSpell) // only true if one or two of the cards are a spell
             {
                 
 
@@ -332,13 +422,12 @@ namespace MTCGServer.Backend.Models
             List<Card> Deck1 = PlayersLookingForGame[player1];
             List<Card> Deck2 = PlayersLookingForGame[player2];
 
-            Random rnd = new Random();
 
             int round = 1;
 
             while(Deck1.Count != 0 && Deck2.Count != 0 && round < 100)
             {
-                IterateBattle(Deck1, Deck2, rnd);
+                IterateBattle(Deck1, Deck2);
                 
             }
 
@@ -383,7 +472,7 @@ namespace MTCGServer.Backend.Models
         }
 
 
-        public void IterateBattle(List<Card> Deck1, List<Card> Deck2, Random rnd)
+        public void IterateBattle(List<Card> Deck1, List<Card> Deck2)
         {
             int randomCardIndexP1 = rnd.Next(Deck1.Count);
             int randomCardIndexP2 = rnd.Next(Deck2.Count);
@@ -447,6 +536,7 @@ namespace MTCGServer.Backend.Models
             this.LobbyID = -1;
             this.BattleCompleted = false;
             this.PlayersLookingForGame = null;
+            this.rnd = new Random();
         }
         
         public void FillLobby(String newPlayer)

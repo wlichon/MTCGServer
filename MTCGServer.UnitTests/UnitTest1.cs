@@ -181,6 +181,94 @@ namespace MTCGServer.UnitTests
 
         }
 
+        [Test]
+
+        public void DecideWinner_BlacksmithVsDragon_ReturnsOne()
+        {
+            // Arrange
+            var mockRnd = new Mock<Random>();
+            var lob = new Lobby { rnd = mockRnd.Object };
+
+            mockRnd.SetupSequence(rnd => rnd.Next(5))
+                .Returns(4);
+
+            var card1 = new Card { Id = "123", Name = "Blacksmith", Damage = 21, Element = "Normal"};
+            var card2 = new Card { Id = "321", Name = "Dragon", Damage = 80, Element = "Fire" };
+
+            // Act
+            var result = lob.DecideWinner(card1, card2);
+
+            // Assert
+            Assert.AreEqual(result, 1);
+
+        }
+
+        [Test]
+        public void DecideWinner_BlacksmithVsDragon_ReturnsZero()
+        {
+            // Arrange
+            var mockRnd = new Mock<Random>();
+            var lob = new Lobby { rnd = mockRnd.Object };
+
+            mockRnd.SetupSequence(rnd => rnd.Next(5))
+                .Returns(4);
+
+            var card1 = new Card { Id = "123", Name = "Blacksmith", Damage = 20, Element = "Normal" };
+            var card2 = new Card { Id = "321", Name = "Dragon", Damage = 80, Element = "Fire" };
+
+            // Act
+            var result = lob.DecideWinner(card1, card2);
+
+            // Assert
+            Assert.AreEqual(result, 0);
+
+        }
+
+        [Test]
+        public void DecideWinner_BlacksmithVsWaterSpell_ReturnsZero()
+        {
+            // Arrange
+            var mockRnd = new Mock<Random>();
+            var lob = new Lobby { rnd = mockRnd.Object };
+
+            mockRnd.SetupSequence(rnd => rnd.Next(5))
+                .Returns(4);
+
+            var card1 = new Card { Id = "123", Name = "Blacksmith", Damage = 20, Element = "Normal" };
+            var card2 = new Card { Id = "321", Name = "FireSpell", Damage = 40, Element = "Fire", isSpell = true };
+
+            // Act
+            var result = lob.DecideWinner(card1, card2);
+
+            // Assert
+            Assert.AreEqual(result, 0);
+
+        }
+
+        [Test]
+        public void DecideWinner_BlacksmithVsBlacksmith_ReturnsOne()
+        {
+            // Arrange
+            var mockRnd = new Mock<Random>();
+            var lob = new Lobby { rnd = mockRnd.Object};
+
+            mockRnd.SetupSequence(rnd => rnd.Next(5))
+                .Returns(4)
+                .Returns(3);
+
+            var card1 = new Card { Id = "123", Name = "Blacksmith", Damage = 20, Element = "Normal" };
+            var card2 = new Card { Id = "321", Name = "Blacksmith", Damage = 20, Element = "Normal" };
+
+            // Act
+            var result = lob.DecideWinner(card1, card2);
+
+            // Assert
+            Assert.AreEqual(result, 1);
+
+        }
+
+
+
 
 
     }
@@ -346,10 +434,10 @@ namespace MTCGServer.UnitTests
         public void IterateBattle_FireDragonVsOrk_Deck1ContainsOrk()
         {
             // Arrange
-            var lob = new Lobby();
-
-
             var mockRnd = new Mock<Random>();
+            var lob = new Lobby { rnd = mockRnd.Object };
+
+
 
             mockRnd.SetupSequence(rnd => rnd.Next(4))
                 .Returns(2) //first card index, FireDragon
@@ -358,7 +446,7 @@ namespace MTCGServer.UnitTests
 
 
             // Act
-            lob.IterateBattle(Deck1,Deck2,mockRnd.Object);
+            lob.IterateBattle(Deck1,Deck2);
 
             // Assert
             Assert.That(Deck1.Any(p => p.Id == "234")); //checks if Ork is now in Deck1 since it lost the battle
@@ -368,10 +456,8 @@ namespace MTCGServer.UnitTests
 
         public void IterateBattle_WaterDragonVsKraken_NoChangeSinceDraw()
         {
-            var lob = new Lobby();
-
-
             var mockRnd = new Mock<Random>();
+            var lob = new Lobby { rnd = mockRnd.Object };
 
             mockRnd.SetupSequence(rnd => rnd.Next(4))
                 .Returns(1) //first card index, WaterDragon
@@ -380,7 +466,7 @@ namespace MTCGServer.UnitTests
 
 
             // Act
-            lob.IterateBattle(Deck1, Deck2, mockRnd.Object);
+            lob.IterateBattle(Deck1, Deck2);
 
             // Assert
             Assert.AreEqual(Deck1.Count,Deck2.Count);
@@ -390,10 +476,8 @@ namespace MTCGServer.UnitTests
 
         public void IterateBattle_WaterSpellVsKnight_Deck2ContainsKnight()
         {
-            var lob = new Lobby();
-
-
             var mockRnd = new Mock<Random>();
+            var lob = new Lobby { rnd = mockRnd.Object };
 
             mockRnd.SetupSequence(rnd => rnd.Next(4))
                 .Returns(3) 
@@ -402,7 +486,7 @@ namespace MTCGServer.UnitTests
 
 
             // Act
-            lob.IterateBattle(Deck1, Deck2, mockRnd.Object);
+            lob.IterateBattle(Deck1, Deck2);
 
             // Assert
             Assert.That(Deck2.Any(p => p.Id == "422")); 
@@ -510,7 +594,8 @@ namespace MTCGServer.UnitTests
         [Test]
         public void DecideWinner_MultipleLogs_ReturnsCorrectLogs()
         {
-            var lob = new Lobby();
+            var mockRnd = new Mock<Random>();
+            var lob = new Lobby { rnd = mockRnd.Object };
             lob.player1 = "Jane";
             lob.player2 = "John";
             var card1 = new Card { Id = "734", Name = "FireSpell", Damage = 160, Element = "Fire", isSpell = true };
@@ -519,10 +604,18 @@ namespace MTCGServer.UnitTests
             var card4 = new Card { Id = "126", Name = "WaterSpell", Damage = 40, Element = "Water", isSpell = true };
             var card5 = new Card { Id = "476", Name = "Dragon", Damage = 150, Element = "Normal"};
             var card6 = new Card { Id = "963", Name = "FireElf", Damage = 30, Element = "Fire" };
-            
+            var card7 = new Card { Id = "999", Name = "Blacksmith", Damage = 20, Element = "Normal" };
+            var card8 = new Card { Id = "111", Name = "Blacksmith", Damage = 20, Element = "Normal" };
+
+
+            mockRnd.SetupSequence(rnd => rnd.Next(5))
+                .Returns(4)
+                .Returns(3);
+
             String expected1 = "Jane: FireSpell (160 Damage) vs John: WaterSpell (40 Damage) => 160 VS 40 -> 80 VS 80 => Draw (no action)";
             String expected2 = "Jane: Knight (70 Damage) vs John: WaterSpell (40 Damage) => The Knights armor is too heavy, causing him to drown => WaterSpell wins";
             String expected3 = "Jane: Dragon (150 Damage) vs John: FireElf (30 Damage) => Elves know Dragons since they were little and can evade their attacks => Elf wins";
+            String expected4 = "Jane: Blacksmith (20 Damage) vs John: Blacksmith (20 Damage) => 20 VS 20 -> 80 VS 60 => Blacksmith wins";
 
             lob.DecideWinner(card1, card2);
 
@@ -536,13 +629,18 @@ namespace MTCGServer.UnitTests
 
             String actual3 = lob.history.logs[2];
 
+            lob.DecideWinner(card7, card8);
+
+            String actual4 = lob.history.logs[3];
+
 
             Assert.Multiple(() =>
             {
-                Assert.That(lob.history.logs.Count == 3);
+                Assert.That(lob.history.logs.Count == 4);
                 Assert.AreEqual(expected1, actual1);
                 Assert.AreEqual(expected2, actual2);
                 Assert.AreEqual(expected3, actual3);
+                Assert.AreEqual(expected4, actual4);
             });
         }
     }
